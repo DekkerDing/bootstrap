@@ -55,6 +55,12 @@ public class Product {
     private Long categoryId;
 
     /**
+     * 商品图片 URL
+     * Product image URL
+     */
+    private String image;
+
+    /**
      * 创建时间
      * Creation timestamp
      */
@@ -133,6 +139,15 @@ public class Product {
 
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
         this.updatedAt = LocalDateTime.now();
     }
 

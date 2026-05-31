@@ -34,6 +34,9 @@ public class ProductEntity {
     @Column(name = "category_id")
     private Long categoryId;
 
+    @Column(length = 500)
+    private String image;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
@@ -117,6 +120,14 @@ public class ProductEntity {
 
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public LocalDateTime getCreatedAt() {
