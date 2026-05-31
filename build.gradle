@@ -61,26 +61,38 @@ allprojects {
 subprojects{
 
     apply plugin: 'org.springframework.boot'
-    apply plugin: 'io.spring.dependency-management'
 
     repositories {
-        mavenCentral()
+        maven { url 'https://repo1.maven.org/maven2' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/spring' }
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:2021.0.5"
+        }
     }
 
     dependencies {
-        annotationProcessor 'org.projectlombok:lombok'
-        api 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok:1.18.24'
+        api 'org.projectlombok:lombok:1.18.24'
         api "org.springframework.boot:spring-boot:${springBootVersion}"
         api "org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}"
         api "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}"
-        api "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
-    }
 
-    dependencyManagement{
+        // Spring Web
+        compileOnly "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
 
-        imports {
-            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
-        }
+        // Spring Data JPA
+        compileOnly "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
+
+        // Spring Transaction
+        compileOnly "org.springframework:spring-tx:5.3.20"
+
+        // Validation
+        compileOnly 'javax.validation:validation-api:2.0.1.Final'
     }
 }
 

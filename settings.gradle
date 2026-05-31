@@ -8,7 +8,13 @@ pluginManagement {
     }
 }
 
+includeBuild('F:/workspace/framework') {
+    dependencySubstitution {
+        substitute module('io.github.DekkerDing:framework-web') using project(':web')
+        substitute module('io.github.DekkerDing:framework-transaction') using project(':transaction')
+    }
+}
+
 rootProject.name = 'bootstrap'
 include 'e-business-spring-boot-starter'
 include 'customer-robot-spring-boot-starter'
-

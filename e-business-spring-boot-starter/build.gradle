@@ -2,10 +2,6 @@ plugins {
     id 'java'
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     // MapStruct 依赖，用于对象映射
     // MapStruct dependency for object mapping
@@ -22,18 +18,24 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-    // Spring Web / Spring Web
-    compileOnly 'org.springframework.boot:spring-boot-starter-web'
+    // Spring Web / Spring Web (from Framework)
+    compileOnly 'io.github.DekkerDing:framework-web:1.0-SNAPSHOT'
 
     // Spring Data JPA / Spring Data JPA
     compileOnly 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    // MyBatis / MyBatis (compileOnly for annotations)
-    compileOnly 'org.mybatis:mybatis:3.5.6'
-    compileOnly 'org.mybatis.spring:mybatis-spring:2.2.0'
+    // MyBatis / MyBatis (using stub annotations provided in project)
+    // compileOnly 'org.mybatis:mybatis'
+    // compileOnly 'org.mybatis.spring:mybatis-spring'
 
-    // Spring Transaction / Spring Transaction
-    compileOnly 'org.springframework:spring-tx'
+    // Spring Transaction / Spring Transaction (from Framework)
+    compileOnly 'io.github.DekkerDing:framework-transaction:1.0-SNAPSHOT'
+
+    // 测试依赖 / Test dependencies
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    testImplementation 'org.springframework:spring-tx'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {

@@ -5,6 +5,8 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.type.AnnotationMetadata;
 
+import java.util.Map;
+
 /**
  * 客服机器人模块注册器
  * Customer Robot Module Registrar
@@ -13,16 +15,18 @@ public class CustomerModuleRegistrar implements ImportBeanDefinitionRegistrar {
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
-        EnableCustomerRobot enableRobot = importingClassMetadata.getAnnotation(EnableCustomerRobot.class);
+        Map<String, Object> attributes = importingClassMetadata.getAnnotationAttributes(EnableCustomerRobot.class.getName());
 
-        if (enableRobot != null) {
-            EnableCustomerRobot.Module[] modules = enableRobot.modules();
+        if (attributes != null && attributes.containsKey("modules")) {
+            Object[] modulesArray = (Object[]) attributes.get("modules");
 
-            if (modules.length == 0) {
+            if (modulesArray.length == 0) {
                 registerAllModules(registry);
             } else {
-                registerSpecifiedModules(registry, modules);
+                registerSpecifiedModules(registry, modulesArray);
             }
+        } else {
+            registerAllModules(registry);
         }
     }
 
@@ -33,19 +37,20 @@ public class CustomerModuleRegistrar implements ImportBeanDefinitionRegistrar {
         registerModule(registry, "session");
     }
 
-    private void registerSpecifiedModules(BeanDefinitionRegistry registry, EnableCustomerRobot.Module[] modules) {
-        for (EnableCustomerRobot.Module module : modules) {
-            switch (module) {
-                case CUSTOMER:
+    private void registerSpecifiedModules(BeanDefinitionRegistry registry, Object[] modules) {
+        for (Object module : modules) {
+            String moduleName = module.toString().toLowerCase();
+            switch (moduleName) {
+                case "customer":
                     registerModule(registry, "customer");
                     break;
-                case CONVERSATION:
+                case "conversation":
                     registerModule(registry, "conversation");
                     break;
-                case MESSAGE:
+                case "message":
                     registerModule(registry, "message");
                     break;
-                case SESSION:
+                case "session":
                     registerModule(registry, "session");
                     break;
             }

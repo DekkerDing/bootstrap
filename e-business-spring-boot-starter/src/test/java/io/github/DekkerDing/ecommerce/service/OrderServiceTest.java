@@ -4,6 +4,7 @@ import io.github.DekkerDing.ecommerce.domain.order.Order;
 import io.github.DekkerDing.ecommerce.domain.order.OrderItem;
 import io.github.DekkerDing.ecommerce.repository.OrderRepository;
 import io.github.DekkerDing.ecommerce.repository.ProductRepository;
+import io.github.DekkerDing.ecommerce.service.impl.OrderServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,6 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -31,11 +33,11 @@ class OrderServiceTest {
     @Mock
     private ProductRepository productRepository;
 
-    private OrderService orderService;
+    private OrderServiceImpl orderService;
 
     @BeforeEach
     void setUp() {
-        orderService = new OrderService(orderRepository, productRepository);
+        orderService = new OrderServiceImpl(orderRepository, productRepository);
     }
 
     @Test

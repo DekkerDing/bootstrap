@@ -7,13 +7,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * API 端到端测试
@@ -96,8 +97,10 @@ class ApiEndToEndTest {
         );
 
         // 更新库存 / Update stock
-        ResponseEntity<ApiResponse> response = restTemplate.patch(
+        ResponseEntity<ApiResponse> response = restTemplate.exchange(
                 "/api/products/" + created.getId() + "/stock?quantity=200",
+                HttpMethod.PATCH,
+                null,
                 ApiResponse.class
         );
 

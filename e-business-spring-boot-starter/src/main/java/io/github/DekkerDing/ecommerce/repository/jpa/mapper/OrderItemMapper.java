@@ -22,6 +22,7 @@ public interface OrderItemMapper {
      * 将 Entity 转换为领域模型
      * Convert Entity to domain model
      */
+    @Mapping(target = "orderId", ignore = true)
     OrderItem toDomain(OrderItemEntity entity);
 
     /**
@@ -30,6 +31,8 @@ public interface OrderItemMapper {
      */
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "order", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
     OrderItemEntity toEntity(OrderItem domain);
 
     /**
@@ -44,5 +47,7 @@ public interface OrderItemMapper {
      */
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "order", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
     List<OrderItemEntity> toEntityList(List<OrderItem> domains);
 }

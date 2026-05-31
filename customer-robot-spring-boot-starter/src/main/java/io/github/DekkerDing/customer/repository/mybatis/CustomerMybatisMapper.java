@@ -32,6 +32,14 @@ public interface CustomerMybatisMapper {
     @ResultMap("customerResultMap")
     List<Customer> findByPhone(String phone);
 
+    @Select("SELECT * FROM customer_customer WHERE email = #{email}")
+    @ResultMap("customerResultMap")
+    List<Customer> findByEmail(String email);
+
+    @Select("SELECT * FROM customer_customer WHERE source = #{source}")
+    @ResultMap("customerResultMap")
+    List<Customer> findBySource(String source);
+
     @Select("SELECT * FROM customer_customer WHERE status = #{status}")
     @ResultMap("customerResultMap")
     List<Customer> findByStatus(String status);

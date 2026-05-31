@@ -4,6 +4,7 @@ import io.github.DekkerDing.ecommerce.domain.product.Category;
 import io.github.DekkerDing.ecommerce.domain.product.Product;
 import io.github.DekkerDing.ecommerce.repository.CategoryRepository;
 import io.github.DekkerDing.ecommerce.repository.ProductRepository;
+import io.github.DekkerDing.ecommerce.service.impl.ProductServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,11 +33,11 @@ class ProductServiceTest {
     @Mock
     private CategoryRepository categoryRepository;
 
-    private ProductService productService;
+    private ProductServiceImpl productService;
 
     @BeforeEach
     void setUp() {
-        productService = new ProductService(productRepository, categoryRepository);
+        productService = new ProductServiceImpl(productRepository, categoryRepository);
     }
 
     @Test

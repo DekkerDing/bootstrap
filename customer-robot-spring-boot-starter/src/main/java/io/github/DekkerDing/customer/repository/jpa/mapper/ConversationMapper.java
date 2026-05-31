@@ -14,6 +14,7 @@ import java.util.List;
 )
 public interface ConversationMapper {
 
+    @Mapping(target = "messages", ignore = true)
     Conversation toDomain(ConversationEntity entity);
 
     @Mapping(target = "id", ignore = true)
