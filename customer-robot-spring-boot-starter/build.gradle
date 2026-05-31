@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // MapStruct 依赖 / MapStruct dependency
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+    compileOnly 'org.mapstruct:mapstruct:1.5.3.Final'
+
+    // Validation API 依赖 / Validation API dependency
+    compileOnly 'javax.validation:validation-api:2.0.1.Final'
+
+    // Spring Boot 相关依赖 / Spring Boot related dependencies
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Spring Web / Spring Web
+    compileOnly 'org.springframework.boot:spring-boot-starter-web'
+
+    // Spring Data JPA / Spring Data JPA
+    compileOnly 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // MyBatis / MyBatis (compileOnly for annotations)
+    compileOnly 'org.mybatis:mybatis:3.5.6'
+    compileOnly 'org.mybatis.spring:mybatis-spring:2.2.0'
+
+    // Spring Transaction / Spring Transaction
+    compileOnly 'org.springframework:spring-tx'
+}
+
+test {
+    useJUnitPlatform()
+}

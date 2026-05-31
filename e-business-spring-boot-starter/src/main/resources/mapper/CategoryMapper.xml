@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.DekkerDing.ecommerce.repository.mybatis.CategoryMybatisMapper">
+
+    <!-- 分类结果映射 / Category Result Map -->
+    <resultMap id="categoryResultMap" type="io.github.DekkerDing.ecommerce.domain.product.Category">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+
+</mapper>

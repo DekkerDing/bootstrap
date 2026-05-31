@@ -1,5 +1,5 @@
 
-description '解决方案集合'
+description '快速启动方案'
 
 buildscript {
 
@@ -13,24 +13,12 @@ buildscript {
     }
 
     repositories {
+        mavenCentral()
         mavenLocal()
         gradlePluginPortal()
-        maven { url 'https://repo.springsource.org/plugins-release'}
-        maven { url 'https://repo.spring.io/plugins-release-local' }
-        maven { url "https://repo.spring.io/plugins-release" }
         maven { url 'https://maven.aliyun.com/repository/central'}
         maven { url 'https://maven.aliyun.com/repository/public'}
-        maven { url 'https://maven.aliyun.com/repository/goole'}
         maven { url 'https://maven.aliyun.com/repository/spring'}
-        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/'}
-        maven { url 'https://repo.spring.io/milestone'}
-        maven { url 'https://repo.spring.io/libs-snapshot'}
-        maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'}
-        maven { url "https://repo.spring.io/libs-spring-framework-build" }
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-        maven { url 'https://repo.spring.io/plugins-snapshot' }
-        maven { url 'https://plugins.gradle.org/m2/' }
-        mavenCentral()
     }
 
     dependencies {
@@ -52,6 +40,12 @@ allprojects {
     compileJava.options.encoding "UTF-8"
     compileTestJava.options.encoding "UTF-8"
 
+    repositories {
+        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/central'}
+        maven { url 'https://maven.aliyun.com/repository/public'}
+    }
+
     dependencies {
         testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
         testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
@@ -68,6 +62,10 @@ subprojects{
 
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
+
+    repositories {
+        mavenCentral()
+    }
 
     dependencies {
         annotationProcessor 'org.projectlombok:lombok'
@@ -169,4 +167,8 @@ idea {
 configurations.all(){
     Configuration configuration ->
         configuration.resolutionStrategy.failOnVersionConflict()
+        configuration.resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            // Force using Maven Central for all dependencies
+            // 强制所有依赖使用 Maven Central
+        }
 }

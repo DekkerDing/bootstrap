@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: ecommerce-sample-app
+
+  # H2 内存数据库配置 / H2 in-memory database configuration
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  # JPA 配置 / JPA configuration
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+# 电商 Starter 配置 / E-commerce Starter configuration
+e-commerce:
+  enabled: true
+  persistence:
+    type: jpa
+  modules:
+    product:
+      enabled: true
+    order:
+      enabled: true
+    payment:
+      enabled: true
+    user:
+      enabled: true
+  api:
+    basePath: /api
+
+# 日志配置 / Logging configuration
+logging:
+  level:
+    io.github.DekkerDing: DEBUG
